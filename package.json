@@ -40,6 +40,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "globals": "^15.2.0",
     "prop-types": "^15.8.1",
+    "sass": "^1.77.1",
     "tsx": "^4.10.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.0"
