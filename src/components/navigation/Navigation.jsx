@@ -21,7 +21,7 @@ const routes = [
 export function Navigation() {
   return (
     <Box backgroundColor="blackAlpha.800">
-      <Container>
+      <Container maxWidth="1200px">
         <Flex className="navigation-container" gap="6" paddingY="2">
           {routes.map(({ route, label }) => (
             <ChakraLink as={TanStackLink} to={route} key={route}>
