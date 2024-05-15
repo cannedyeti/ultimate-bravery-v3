@@ -5,7 +5,7 @@ def league_test():
     watcher = LolWatcher(api_key)
     my_region = 'na1'
     me = watcher.summoner.by_name(my_region, "virkthejerk")
-    ctx.send((me))
+    return me
 
 def get_league_rank(summoner):
     api_key = LEAGUE_API_KEY
