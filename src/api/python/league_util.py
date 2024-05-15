@@ -1,4 +1,4 @@
-LEAGUE_API_Key="something"
+LEAGUE_API_KEY="something"
 
 def league_test():
     api_key = LEAGUE_API_Key
