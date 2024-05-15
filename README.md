@@ -1,8 +1,33 @@
-# React + Vite
+# Ultimate bravery v3
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is v3 of a react based ultimate bravery. I'm sure this will soon evolve into something more.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- To run app, use `npm run dev`
+
+## Component library
+
+Have yet to decide what we're going to use. Options include
+
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [Ant Design](https://ant.design/)
+- [Chakra UI](https://v2.chakra-ui.com/getting-started/comparison)
+- [ChadCN UI](https://ui.shadcn.com/)
+- Other recommendations - will default to noobs
+
+## File structure
+
+[See here](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)
+
+## Routing
+
+[TanStack Router](https://tanstack.com/router/latest/docs/framework/react/overview).
+
+Bit of a new technology gaining popularity. Step up from classic react-router
+
+## Caching
+
+[TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview).
+
+Using query allows us to cache api calls which means we make the calls less often, speeding up the application.
