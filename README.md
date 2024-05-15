@@ -8,13 +8,7 @@ This is v3 of a react based ultimate bravery. I'm sure this will soon evolve int
 
 ## Component library
 
-Have yet to decide what we're going to use. Options include
-
-- [Material UI](https://mui.com/material-ui/getting-started/)
-- [Ant Design](https://ant.design/)
 - [Chakra UI](https://v2.chakra-ui.com/getting-started/comparison)
-- [ChadCN UI](https://ui.shadcn.com/)
-- Other recommendations - will default to noobs
 
 ## File structure
 
