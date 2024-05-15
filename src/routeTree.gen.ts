@@ -11,9 +11,15 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as FetchDataImport } from './routes/fetch-data'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const FetchDataRoute = FetchDataImport.update({
+  path: '/fetch-data',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -31,11 +37,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/fetch-data': {
+      id: '/fetch-data'
+      path: '/fetch-data'
+      fullPath: '/fetch-data'
+      preLoaderRoute: typeof FetchDataImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ IndexRoute })
+export const routeTree = rootRoute.addChildren({ IndexRoute, FetchDataRoute })
 
 /* prettier-ignore-end */
