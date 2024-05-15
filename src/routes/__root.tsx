@@ -8,7 +8,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <Box backgroundColor="gray.300" height="100vh">
+    <Box backgroundColor="gray.300" height="100%">
       <Navigation />
       <Container paddingY="2rem">
         <Outlet />

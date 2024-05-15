@@ -13,8 +13,8 @@ const routes = [
     label: "Home",
   },
   {
-    route: "/fetch-data",
-    label: "Fetch",
+    route: "/bravery",
+    label: "Bravery",
   },
 ];
 
