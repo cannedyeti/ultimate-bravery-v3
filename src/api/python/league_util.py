@@ -21,7 +21,7 @@ def get_league_rank(summoner):
     return response
 
 def get_league_rank_internal(summoner):
-    api_key = LEAGUE_API_Key
+    api_key = LEAGUE_API_KEY
     watcher = LolWatcher(api_key)
     my_region = 'na1'
     ranked_array = []
