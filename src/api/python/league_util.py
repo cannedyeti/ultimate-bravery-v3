@@ -1,7 +1,7 @@
 LEAGUE_API_KEY="something"
 
 def league_test():
-    api_key = LEAGUE_API_Key
+    api_key = LEAGUE_API_KEY
     watcher = LolWatcher(api_key)
     my_region = 'na1'
     me = watcher.summoner.by_name(my_region, "virkthejerk")
