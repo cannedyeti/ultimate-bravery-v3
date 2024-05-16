@@ -36,24 +36,29 @@ export function ChampionImage({ imageUrl, championObject }) {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
+          <Box
+            position="relative"
+            borderRadius={2}
+            overflow="hidden"
+            _hover={{
+              transform: "scale(1.1)",
+              zIndex: 1,
+            }}
+            transition="all 0.3s ease-in-out"
+            >
 
-        <Avatar
-          flex="0 1 calc(100% / 8 - .5rem)"
-          height="auto"
-          minWidth="55px"
-          onClick={toggleSelectedChampion}
-          filter={
-            !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
-          }
-          src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
-          borderRadius={2}
-          _hover={{
-            transform: "scale(1.1)",
-            zIndex: 1,
-            boxShadow: "0 0 10px 5px rgba(0, 0, 0, 0.3)",
-          }}
-          transition="all 0.2s"
-        />
+            <Avatar
+              flex="0 1 calc(100% / 8 - .5rem)"
+              height="auto"
+              minWidth="55px"
+              onClick={toggleSelectedChampion}
+              filter={
+                !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
+              }
+              src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
+              borderRadius={2}
+            />
+          </Box>
         {isHovered && (
           <Box
             position="absolute"
@@ -61,11 +66,11 @@ export function ChampionImage({ imageUrl, championObject }) {
             left="0"
             right="0"
             bottom="0"
-            bg="rgba(0, 0, 0, 0.7)"
             borderRadius={2}
             display="flex"
             justifyContent="center"
             alignItems="center"
+            boxShadow="0 0 10px rgba(0, 0, 0, 0.5)"
           />
             
         )}
