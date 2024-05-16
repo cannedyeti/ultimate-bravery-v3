@@ -8,7 +8,7 @@ This is v3 of a react based ultimate bravery. I'm sure this will soon evolve int
 
 ## Component library
 
-- [Chakra UI](https://v2.chakra-ui.com/getting-started/comparison)
+[Chakra UI](https://v2.chakra-ui.com/getting-started/comparison)
 
 ## File structure
 
