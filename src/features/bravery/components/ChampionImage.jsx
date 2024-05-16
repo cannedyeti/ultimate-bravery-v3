@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { Avatar, Tooltip, Box } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { CHAMPION_IMAGE_BASE_URL } from "src/api/fetchRiotData";
@@ -7,7 +7,6 @@ import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
 
 export function ChampionImage({ imageUrl, championObject }) {
   const { state, actions } = useContext(BraveryContext);
-  const setIsHovered = useState(false);
 
   const toggleSelectedChampion = () => {
     const addChampion = state.selectedChampions?.[championObject.id]
@@ -31,16 +30,14 @@ export function ChampionImage({ imageUrl, championObject }) {
           flex="0 1 calc(100% / 8 - .5rem)"
           height="auto"
           minWidth="55px"
-          onMouseEnter={() => setIsHovered(true)}  
-          onMouseLeave={() => setIsHovered(false)}  
           borderRadius={2}
-            overflow="hidden"
-            _hover={{
-              transform: "scale(1.1)",
-              zIndex: 1,
-            }}
-            transition="all 0.2s"
-            boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
+          overflow="hidden"
+          _hover={{
+            transform: "scale(1.1)",
+            zIndex: 1,
+          }}
+          transition="all 0.2s"
+          boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
         >
           <Avatar
             width="100%"
