@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Avatar } from "@chakra-ui/react";
+import { useContext} from "react";
+import { Avatar, Tooltip, Box } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { CHAMPION_IMAGE_BASE_URL } from "src/api/fetchRiotData";
 
@@ -21,19 +21,36 @@ export function ChampionImage({ imageUrl, championObject }) {
     actions.setSelectedChampions(updatedChampionList);
   };
 
+
   return (
     <>
-      <Avatar
-        flex="0 1 calc(100% / 8 - .5rem)"
-        height="auto"
-        minWidth="55px"
-        onClick={toggleSelectedChampion}
-        filter={
-          !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
-        }
-        src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
-        borderRadius={2}
-      />
+      <Tooltip label={championObject.name} placement="auto">
+        <Box
+          position="relative"
+          flex="0 1 calc(100% / 8 - .5rem)"
+          height="auto"
+          minWidth="55px"
+          borderRadius={2}
+          overflow="hidden"
+          _hover={{
+            transform: "scale(1.1)",
+            zIndex: 1,
+          }}
+          transition="all 0.2s"
+          boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
+        >
+          <Avatar
+            width="100%"
+            height="100%"
+            onClick={toggleSelectedChampion}
+            filter={
+                !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
+            }
+            src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
+            borderRadius={2}
+          />
+        </Box>
+      </Tooltip>
     </>
   );
 }
