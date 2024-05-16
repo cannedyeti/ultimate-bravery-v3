@@ -9,20 +9,24 @@ export function ChampionImage({ imageUrl, championObject }) {
   const { state, actions } = useContext(BraveryContext);
 
   const toggleSelectedChampion = () => {
-    const toggleTo = state.selectedChampions?.[championObject.id]
+    const addChampion = state.selectedChampions?.[championObject.id]
       ? false
       : championObject;
-    actions.setSelectedChampions({
+    const updatedChampionList = {
       ...state.selectedChampions,
-      [championObject.id]: toggleTo,
-    });
+    };
+    addChampion
+      ? (updatedChampionList[championObject.id] = championObject)
+      : delete updatedChampionList[championObject.id];
+    actions.setSelectedChampions(updatedChampionList);
   };
 
   return (
     <>
       <Avatar
-        flex="1 1 55px"
+        flex="0 1 calc(100% / 8 - .5rem)"
         height="auto"
+        minWidth="55px"
         onClick={toggleSelectedChampion}
         filter={
           !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
@@ -36,5 +40,5 @@ export function ChampionImage({ imageUrl, championObject }) {
 
 ChampionImage.propTypes = {
   imageUrl: PropTypes.string,
-  championObject: PropTypes.string,
+  championObject: PropTypes.object,
 };
