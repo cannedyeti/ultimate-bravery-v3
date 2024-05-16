@@ -44,7 +44,7 @@ export function ChampionImage({ imageUrl, championObject }) {
               transform: "scale(1.1)",
               zIndex: 1,
             }}
-            transition="all 0.3s ease-in-out"
+            transition="all 0.2s"
             >
 
             <Avatar
@@ -70,7 +70,7 @@ export function ChampionImage({ imageUrl, championObject }) {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            boxShadow="0 0 10px rgba(0, 0, 0, 0.5)"
+            boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
           />
             
         )}
