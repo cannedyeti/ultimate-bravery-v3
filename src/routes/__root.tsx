@@ -10,7 +10,7 @@ function RootComponent() {
   return (
     <Box backgroundColor="gray.300" height="100%" minHeight="100vh">
       <Navigation />
-      <Container paddingY="2rem" maxWidth="1200px">
+      <Container paddingY="2rem" maxWidth="1400px">
         <Outlet />
       </Container>
     </Box>
