@@ -12,12 +12,7 @@ export function Bravery() {
   useEffect(() => {
     async function fetchData() {
       const data = await getRiotData();
-      console.log({ data });
-      let championArray = await Object.keys(data.champions).map((key) => ({
-        ...data.champions[key],
-      }));
       setChampData(data.champions);
-      console.log({ championArray });
       actions.setSelectedChampions(data.champions);
     }
     fetchData();
