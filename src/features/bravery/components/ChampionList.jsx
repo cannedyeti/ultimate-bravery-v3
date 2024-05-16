@@ -1,10 +1,16 @@
-import { useContext } from "react";
-import { Button, Flex, Spinner } from "@chakra-ui/react";
+import { useState, useContext, useEffect } from "react";
+import { Button, Flex, Spinner, Input } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { BraveryContext } from "./BraveryReducer";
 import { ChampionImage } from "./ChampionImage";
 
 export function ChampionList({ champData }) {
+  const [champObj, setChampObj] = useState(null);
+
+  useEffect(() => {
+    setChampObj(champData);
+  }, [champData]);
+
   const { actions } = useContext(BraveryContext);
 
   const deselectAllChampions = () => {
@@ -13,6 +19,21 @@ export function ChampionList({ champData }) {
 
   const selectAllChampions = () => {
     actions.setSelectedChampions(champData);
+  };
+
+  const searchChampObject = ({ target }) => {
+    if (!target.value.length) {
+      setChampObj(champData);
+      return;
+    }
+    const filtered = Object.keys(champData)
+      .filter((key) => key.toLowerCase().includes(target.value.toLowerCase()))
+      .reduce((obj, key) => {
+        if (!obj) return;
+        obj[key] = champData?.[key];
+        return obj;
+      }, {});
+    setChampObj(filtered);
   };
 
   return (
@@ -35,13 +56,19 @@ export function ChampionList({ champData }) {
           Deselect all
         </Button>
       </Flex>
-      <Flex gap={2} wrap="wrap" marginY={4}>
-        {champData ? (
-          Object.keys(champData).map((champ) => (
+      <Input
+        colorScheme="blackAlpha"
+        onChange={searchChampObject}
+        placeholder="Search for a champion"
+        marginTop={4}
+      />
+      <Flex gap={2} wrap="wrap" marginY={4} justifyContent="center">
+        {champObj ? (
+          Object.keys(champObj).map((champ) => (
             <ChampionImage
-              key={champData[champ].id}
-              championObject={champData[champ]}
-              imageUrl={champData[champ]?.image?.full}
+              key={champObj?.[champ].id}
+              championObject={champObj?.[champ]}
+              imageUrl={champObj?.[champ]?.image?.full}
             />
           ))
         ) : (

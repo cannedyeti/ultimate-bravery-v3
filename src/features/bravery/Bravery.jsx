@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Heading, Flex, Button } from "@chakra-ui/react";
+import { Heading, Flex, Button, Box } from "@chakra-ui/react";
 import { getRiotData } from "src/api/fetchRiotData";
 import { BraveryContext } from "./components/BraveryReducer";
 import { ChampionList } from "./components/ChampionList";
@@ -9,7 +9,6 @@ import { randomObjectProperty } from "src/common/helpers";
 
 export function Bravery() {
   const { state, actions } = useContext(BraveryContext);
-  console.log({ state });
   const [champData, setChampData] = useState(null);
 
   useEffect(() => {
@@ -22,6 +21,8 @@ export function Bravery() {
   }, []);
 
   const randomizeChampion = () => {
+    if (!state.selectedChampions)
+      return actions.setSelectedRandomChampion(null);
     const champion = randomObjectProperty(state.selectedChampions);
     actions.setSelectedRandomChampion(champion);
   };
@@ -40,9 +41,9 @@ export function Bravery() {
             )}
           </div>
         </Flex>
-        <div>
+        <Box width="100%">
           <ChampionList champData={champData} />
-        </div>
+        </Box>
       </Flex>
     </>
   );
