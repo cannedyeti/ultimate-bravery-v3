@@ -28,6 +28,9 @@ export function ChampionImage({ imageUrl, championObject }) {
       <Tooltip label={championObject.name} placement="auto">
         <Box
           position="relative"
+          flex="0 1 calc(100% / 8 - .5rem)"
+          height="auto"
+          minWidth="55px"
           onMouseEnter={() => setIsHovered(true)}  
           onMouseLeave={() => setIsHovered(false)}  
           borderRadius={2}
@@ -40,9 +43,8 @@ export function ChampionImage({ imageUrl, championObject }) {
             boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
         >
           <Avatar
-            flex="0 1 calc(100% / 8 - .5rem)"
-            height="auto"
-            minWidth="55px"
+            width="100%"
+            height="100%"
             onClick={toggleSelectedChampion}
             filter={
                 !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
