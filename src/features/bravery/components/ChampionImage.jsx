@@ -21,59 +21,35 @@ export function ChampionImage({ imageUrl, championObject }) {
       : delete updatedChampionList[championObject.id];
     actions.setSelectedChampions(updatedChampionList);
   };
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+
 
   return (
     <>
       <Tooltip label={championObject.name} placement="auto">
         <Box
           position="relative"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <Box
-            position="relative"
-            borderRadius={2}
+          onMouseEnter={() => setIsHovered(true)}  
+          onMouseLeave={() => setIsHovered(false)}  
+          borderRadius={2}
             overflow="hidden"
             _hover={{
               transform: "scale(1.1)",
               zIndex: 1,
             }}
             transition="all 0.2s"
-            >
-
-            <Avatar
-              flex="0 1 calc(100% / 8 - .5rem)"
-              height="auto"
-              minWidth="55px"
-              onClick={toggleSelectedChampion}
-              filter={
-                !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
-              }
-              src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
-              borderRadius={2}
-            />
-          </Box>
-        {isHovered && (
-          <Box
-            position="absolute"
-            top="0"
-            left="0"
-            right="0"
-            bottom="0"
-            borderRadius={2}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
             boxShadow="0 0 10px rgba(0, 0, 0, 0.3)"
+        >
+          <Avatar
+            flex="0 1 calc(100% / 8 - .5rem)"
+            height="auto"
+            minWidth="55px"
+            onClick={toggleSelectedChampion}
+            filter={
+                !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
+            }
+            src={`${CHAMPION_IMAGE_BASE_URL}${imageUrl}`}
+            borderRadius={2}
           />
-            
-        )}
         </Box>
       </Tooltip>
     </>
