@@ -7,7 +7,7 @@ import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
 
 export function ChampionImage({ imageUrl, championObject }) {
   const { state, actions } = useContext(BraveryContext);
-  const [isHovered, setIsHovered] = useState(false);
+  const setIsHovered = useState(false);
 
   const toggleSelectedChampion = () => {
     const addChampion = state.selectedChampions?.[championObject.id]
