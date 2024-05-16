@@ -6,11 +6,13 @@ export const BraveryContext = createContext();
 export const getInitialState = () => {
   return {
     selectedChampions: [],
+    selectedRandomChampion: null,
   };
 };
 
 const ACTIONS = {
   SET_SELECTED_CHAMPIONS: "SET_SELECTED_CHAMPIONS",
+  SET_RANDOMIZED_CHAMPION: "SET_RANDOMIZED_CHAMPION",
 };
 
 const braveryReducer = (state, action) => {
@@ -18,6 +20,10 @@ const braveryReducer = (state, action) => {
     switch (action.type) {
       case ACTIONS.SET_SELECTED_CHAMPIONS:
         draft.selectedChampions = action.selectedChampions;
+        break;
+
+      case ACTIONS.SET_RANDOMIZED_CHAMPION:
+        draft.selectedRandomChampion = action.selectedRandomChampion;
         break;
 
       default:
@@ -35,10 +41,17 @@ export function useBraveryReducer(init = getInitialState()) {
       selectedChampions,
     });
   };
+  const setSelectedRandomChampion = (selectedRandomChampion) => {
+    dispatch({
+      type: ACTIONS.SET_RANDOMIZED_CHAMPION,
+      selectedRandomChampion,
+    });
+  };
   return {
     state,
     actions: {
       setSelectedChampions,
+      setSelectedRandomChampion,
     },
   };
 }

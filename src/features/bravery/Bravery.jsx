@@ -1,8 +1,11 @@
 import { useEffect, useState, useContext } from "react";
-import { Heading, Flex, Spinner, Button } from "@chakra-ui/react";
+import { Heading, Flex, Button } from "@chakra-ui/react";
 import { getRiotData } from "src/api/fetchRiotData";
-import { ChampionImage } from "./components/ChampionImage";
 import { BraveryContext } from "./components/BraveryReducer";
+import { ChampionList } from "./components/ChampionList";
+import { RandomChampion } from "./components/RandomChampion";
+
+import { randomObjectProperty } from "src/common/helpers";
 
 export function Bravery() {
   const { state, actions } = useContext(BraveryContext);
@@ -18,45 +21,28 @@ export function Bravery() {
     fetchData();
   }, []);
 
-  const deselectAllChampions = () => {
-    actions.setSelectedChampions(null);
-  };
-
-  const selectAllChampions = () => {
-    actions.setSelectedChampions(champData);
+  const randomizeChampion = () => {
+    const champion = randomObjectProperty(state.selectedChampions);
+    actions.setSelectedRandomChampion(champion);
   };
 
   return (
     <>
       <Heading as="h2">Bravery</Heading>
-      <Flex marginY={2} gap={2}>
-        <Button
-          variant="outline"
-          colorScheme="purple"
-          onClick={selectAllChampions}
-        >
-          Select all
-        </Button>
-        <Button
-          variant="outline"
-          colorScheme="purple"
-          onClick={deselectAllChampions}
-        >
-          Deselect all
-        </Button>
-      </Flex>
-      <Flex gap={2} wrap="wrap" marginY={4}>
-        {champData ? (
-          Object.keys(champData).map((champ) => (
-            <ChampionImage
-              key={champData[champ].id}
-              championObject={champData[champ]}
-              imageUrl={champData[champ]?.image?.full}
-            />
-          ))
-        ) : (
-          <Spinner />
-        )}
+      <Flex marginY={2} gap={4}>
+        <Flex flexDirection="column" minW="60%">
+          <Button colorScheme="purple" onClick={randomizeChampion}>
+            Random
+          </Button>
+          <div>
+            {state.selectedRandomChampion && (
+              <RandomChampion championObject={state.selectedRandomChampion} />
+            )}
+          </div>
+        </Flex>
+        <div>
+          <ChampionList champData={champData} />
+        </div>
       </Flex>
     </>
   );

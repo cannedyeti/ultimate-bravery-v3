@@ -21,6 +21,8 @@ export function ChampionImage({ imageUrl, championObject }) {
   return (
     <>
       <Avatar
+        flex="1 1 55px"
+        height="auto"
         onClick={toggleSelectedChampion}
         filter={
           !state.selectedChampions?.[championObject.id] && "grayscale(100%)"
