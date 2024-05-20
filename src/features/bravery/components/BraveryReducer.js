@@ -7,12 +7,14 @@ export const getInitialState = () => {
   return {
     selectedChampions: [],
     selectedRandomChampion: null,
+    selectedRandomItems: null,
   };
 };
 
 const ACTIONS = {
   SET_SELECTED_CHAMPIONS: "SET_SELECTED_CHAMPIONS",
   SET_RANDOMIZED_CHAMPION: "SET_RANDOMIZED_CHAMPION",
+  SET_RANDOMIZED_ITEMS: "SET_RANDOMIZED_ITEMS",
 };
 
 const braveryReducer = (state, action) => {
@@ -24,6 +26,10 @@ const braveryReducer = (state, action) => {
 
       case ACTIONS.SET_RANDOMIZED_CHAMPION:
         draft.selectedRandomChampion = action.selectedRandomChampion;
+        break;
+
+      case ACTIONS.SET_RANDOMIZED_ITEMS:
+        draft.selectedRandomItems = action.selectedRandomItems;
         break;
 
       default:
@@ -47,11 +53,18 @@ export function useBraveryReducer(init = getInitialState()) {
       selectedRandomChampion,
     });
   };
+  const setSelectedRandomItems = (selectedRandomItems) => {
+    dispatch({
+      type: ACTIONS.SET_RANDOMIZED_ITEMS,
+      selectedRandomItems,
+    });
+  };
   return {
     state,
     actions: {
       setSelectedChampions,
       setSelectedRandomChampion,
+      setSelectedRandomItems,
     },
   };
 }
