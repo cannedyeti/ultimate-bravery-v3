@@ -5,6 +5,7 @@ import { BraveryContext } from "./components/BraveryReducer";
 import { ChampionList, RandomChampion, RandomItems } from "./components";
 import { sortItemData, SUMMONERS_RIFT_MAP_ID } from "./components/helpers";
 import {
+  getRandomInt,
   randomObjectProperty,
   randomUniqueItemsFromArray,
 } from "src/common/helpers";
@@ -33,6 +34,8 @@ export function Bravery() {
     const champion = randomObjectProperty(state.selectedChampions);
     randomizeItems();
     actions.setSelectedRandomChampion(champion);
+    actions.setSelectedRandomAbilityIndex(getRandomInt(3));
+    actions.setSelectedRandomAbility(champion.spells[state.selectedRandomAbilityIndex]);
   };
 
   const randomizeItems = () => {
