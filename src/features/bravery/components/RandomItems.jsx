@@ -3,28 +3,25 @@ import { Avatar, Box, Flex, Spinner, Tooltip } from "@chakra-ui/react";
 import { ITEM_IMAGE_BASE_URL, SPELL_IMAGE_BASE_URL } from "src/api/fetchRiotData";
 import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
 import { abilityArray } from "src/features/bravery/components/helpers";
-import { getRandomInt } from "src/common/helpers";
 
 export function RandomItems() {
   const { state } = useContext(BraveryContext);
-  const starterAbilityIndex = getRandomInt(3);
-  const ability = state.selectedRandomChampion?.spells[starterAbilityIndex];
-
+  const ability = state.selectedRandomAbility;
+  console.log({ ability })
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
-      <Box>{abilityArray[starterAbilityIndex]}
-        {ability?.name ? (
+      {ability?.name ? (
+        <Box>{abilityArray[state.selectedRandomAbilityIndex]}
           <Tooltip label={ability.name}>
             <Avatar
               src={`${SPELL_IMAGE_BASE_URL}${ability.image.full}`}
               borderRadius={2}
             />
           </Tooltip>
-        )
-          : (
-          <Spinner />
-        )}
-      </Box>
+        </Box>
+      ) : (
+        <Spinner />
+      )}
 
       <Box>
         <Tooltip label={state.selectedRandomItems.boots.name}>
