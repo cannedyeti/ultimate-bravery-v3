@@ -20,7 +20,7 @@ export function Bravery() {
       const data = await getRiotData();
       setItemData(sortItemData(data.items, SUMMONERS_RIFT_MAP_ID));
       setChampData(data.champions);
-      actions.setSelectedChampions(data.champions)
+      actions.setSelectedChampions(data.champions);
     }
     fetchData();
   }, []);

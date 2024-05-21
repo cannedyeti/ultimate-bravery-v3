@@ -13,10 +13,3 @@ export const getRiotData = async () => {
   ).then((x) => x.json());
   return data;
 };
-
-export const getChampionData = async (championName) => {
-  const data = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/14.10.1/data/en_US/champion/${championName}.json`
-  ).then((x) => x.json());
-  return data;
-}
