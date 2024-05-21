@@ -21,7 +21,7 @@ export function RandomItems() {
           />
         </Tooltip>
         {state.selectedRandomItems.items.map((item) => (
-          <Tooltip key={item.key} label={item.name}>
+          <Tooltip key={item.name} label={item.name}>
             <Avatar
               src={`${ITEM_IMAGE_BASE_URL}${item.image.full}`}
               borderRadius={2}
