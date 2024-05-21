@@ -56,3 +56,5 @@ const isItemEligible = (item) => {
     item.name !== "Leeching Leer"
   );
 };
+
+export const abilityArray = ["Q", "W", "E", "R"]
