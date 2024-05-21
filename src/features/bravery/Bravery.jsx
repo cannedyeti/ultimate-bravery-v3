@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Heading, Flex, Button, Box } from "@chakra-ui/react";
-import { getRiotData } from "src/api/fetchRiotData";
+import { getRiotData, getChampionData } from "src/api/fetchRiotData";
 import { BraveryContext } from "./components/BraveryReducer";
 import { ChampionList, RandomChampion, RandomItems } from "./components";
 import { sortItemData, SUMMONERS_RIFT_MAP_ID } from "./components/helpers";
@@ -32,7 +32,11 @@ export function Bravery() {
     }
     const champion = randomObjectProperty(state.selectedChampions);
     randomizeItems();
-    actions.setSelectedRandomChampion(champion);
+    const detailedChampData = getChampionData(champion.id);
+    console.log({ detailedChampData });
+    detailedChampData.then((champ) => {
+      actions.setSelectedRandomChampion(champ.data[champion.id]);
+    });
   };
 
   const randomizeItems = () => {
