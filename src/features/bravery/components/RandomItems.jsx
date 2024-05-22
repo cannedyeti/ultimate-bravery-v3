@@ -11,16 +11,18 @@ import { abilityArray } from "src/features/bravery/components/helpers";
 export function RandomItems() {
   const { state } = useContext(BraveryContext);
   const ability =
-    state.selectedRandomChampion.spells[state.selectedRandomAbilityIndex];
-
-  console.log({ ability });
+    state.selectedRandomChampion?.spells?.[state.selectedRandomAbilityIndex];
 
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
       <Box>
-        <Tooltip label={ability.name}>
+        <Tooltip
+          label={
+            ability?.name || abilityArray[state.selectedRandomAbilityIndex]
+          }
+        >
           <Avatar
-            src={`${SPELL_IMAGE_BASE_URL}${ability.image.full}`}
+            src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
             borderRadius={2}
           >
             <AvatarBadge
