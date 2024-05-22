@@ -6,6 +6,7 @@ import {
   SPELL_IMAGE_BASE_URL,
 } from "src/api/fetchRiotData";
 import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
+import { TooltipCard } from "src/features/bravery/components/TooltipCard";
 import { ABILITY_ARRAY } from "src/features/bravery/components/helpers";
 
 export function RandomItems() {
@@ -16,11 +17,7 @@ export function RandomItems() {
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
       <Box>
-        <Tooltip
-          label={
-            ability?.name || ABILITY_ARRAY[state.selectedRandomAbilityIndex]
-          }
-        >
+        <Tooltip label={<TooltipCard header={ability.name} body={ability.description} /> || ABILITY_ARRAY[state.selectedRandomAbilityIndex]}>
           <Avatar
             src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
             borderRadius={2}
@@ -38,19 +35,19 @@ export function RandomItems() {
           </Avatar>
         </Tooltip>
       </Box>
-
       <Box>
-        {state.selectedRandomItems?.boots ? (
-          <Tooltip label={state.selectedRandomItems.boots.name}>
-            <Avatar
-              src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.boots.image.full}`}
-              borderRadius={2}
-            />
-          </Tooltip>
-        ) : null}
-
+      {state.selectedRandomItems?.boots ? (
+        <Tooltip 
+          label={<TooltipCard header={state.selectedRandomItems.boots.name} body={`${state.selectedRandomItems.boots.gold.total} gold`} />}
+        >
+          <Avatar
+            src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.boots.image.full}`}
+            borderRadius={2}
+          />
+        </Tooltip>
+       ) : null}
         {state.selectedRandomItems.items.map((item) => (
-          <Tooltip key={item.name} label={item.name}>
+          <Tooltip key={item.name} label={<TooltipCard header={item.name} body={`${item.gold.total} gold`} />}>
             <Avatar
               src={`${ITEM_IMAGE_BASE_URL}${item.image.full}`}
               borderRadius={2}
@@ -60,8 +57,7 @@ export function RandomItems() {
       </Box>
       <div>
         <Tooltip
-          label={`Optional starter: ${state.selectedRandomItems.starter.name}`}
-        >
+          label={<TooltipCard header={state.selectedRandomItems.starter.name} body={`${state.selectedRandomItems.starter.gold.total} gold`} />}>            
           <Avatar
             src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.starter.image.full}`}
             borderRadius={2}
