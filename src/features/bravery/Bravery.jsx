@@ -35,7 +35,6 @@ export function Bravery() {
     randomizeItems();
     actions.setSelectedRandomChampion(champion);
     actions.setSelectedRandomAbilityIndex(getRandomInt(3));
-    actions.setSelectedRandomAbility(champion.spells[state.selectedRandomAbilityIndex]);
   };
 
   const randomizeItems = () => {

@@ -8,7 +8,6 @@ export const getInitialState = () => {
     selectedChampions: [],
     selectedRandomChampion: null,
     selectedRandomItems: null,
-    selectedRandomAbility: null,
     selectedRandomAbilityIndex: 0,
   };
 };
@@ -17,7 +16,6 @@ const ACTIONS = {
   SET_SELECTED_CHAMPIONS: "SET_SELECTED_CHAMPIONS",
   SET_RANDOMIZED_CHAMPION: "SET_RANDOMIZED_CHAMPION",
   SET_RANDOMIZED_ITEMS: "SET_RANDOMIZED_ITEMS",
-  SET_RANDOMIZED_ABILITY: "SET_RANDOMIZED_ABILITY",
   SET_RANDOMIZED_ABILITY_INDEX: "SET_RANDOMIZED_ABILITY_INDEX",
 };
 
@@ -36,9 +34,6 @@ const braveryReducer = (state, action) => {
         draft.selectedRandomItems = action.selectedRandomItems;
         break;
       
-      case ACTIONS.SET_RANDOMIZED_ABILITY:
-        draft.selectedRandomAbility = action.selectedRandomAbility;
-        break;
       case ACTIONS.SET_RANDOMIZED_ABILITY_INDEX:
         draft.selectedRandomAbilityIndex = action.selectedRandomAbilityIndex;
         break;
@@ -70,12 +65,6 @@ export function useBraveryReducer(init = getInitialState()) {
       selectedRandomItems,
     });
   };
-  const setSelectedRandomAbility = (selectedRandomAbility) => {
-    dispatch({
-      type: ACTIONS.SET_RANDOMIZED_ABILITY,
-      selectedRandomAbility,
-    });
-  }
   const setSelectedRandomAbilityIndex = (selectedRandomAbilityIndex) => {
     dispatch({
       type: ACTIONS.SET_RANDOMIZED_ABILITY_INDEX,
@@ -88,7 +77,6 @@ export function useBraveryReducer(init = getInitialState()) {
       setSelectedChampions,
       setSelectedRandomChampion,
       setSelectedRandomItems,
-      setSelectedRandomAbility,
       setSelectedRandomAbilityIndex,
     },
   };
