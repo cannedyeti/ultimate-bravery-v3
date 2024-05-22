@@ -1,4 +1,5 @@
 export const SUMMONERS_RIFT_MAP_ID = 11;
+export const JUNGLE_ROLE_CHANCE = 0.2;
 
 export const sortItemData = (oldItemObject, mapId) => {
   const newItemObj = {
@@ -57,4 +58,4 @@ const isItemEligible = (item) => {
   );
 };
 
-export const abilityArray = ["Q", "W", "E", "R"]
+export const abilityArray = ["Q", "W", "E", "R"];

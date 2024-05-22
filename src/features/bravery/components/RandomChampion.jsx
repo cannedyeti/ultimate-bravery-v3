@@ -16,6 +16,7 @@ export function RandomChampion({ championObject }) {
       <Avatar
         maxW="200px"
         size="xlrg"
+        borderRadius={2}
         src={`${CHAMPION_IMAGE_BASE_URL}${championObject?.image?.full}`}
       />
     </Flex>
