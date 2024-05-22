@@ -19,6 +19,7 @@
     "@tanstack/react-router": "^1.32.5",
     "aws-amplify": "^6.3.1",
     "aws-sdk": "^2.1620.0",
+    "dompurify": "^3.1.4",
     "fireworks-js": "^2.10.7",
     "framer-motion": "^11.2.2",
     "immer": "^10.1.1",

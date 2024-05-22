@@ -59,7 +59,3 @@ const isItemEligible = (item) => {
 };
 
 export const abilityArray = ["Q", "W", "E", "R"];
-
-export const sanitizeDescription = (description) => {
-  return description.replace(/<[^>]*>/g, "");
-};
