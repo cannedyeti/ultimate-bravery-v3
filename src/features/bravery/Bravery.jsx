@@ -3,7 +3,11 @@ import { Heading, Flex, Button, Box } from "@chakra-ui/react";
 import { getRiotData } from "src/api/fetchRiotData";
 import { BraveryContext } from "./components/BraveryReducer";
 import { ChampionList, RandomChampion, RandomItems } from "./components";
-import { sortItemData, SUMMONERS_RIFT_MAP_ID } from "./components/helpers";
+import {
+  sortItemData,
+  SUMMONERS_RIFT_MAP_ID,
+  JUNGLE_ROLE_CHANCE,
+} from "./components/helpers";
 import {
   getRandomInt,
   randomObjectProperty,
@@ -35,12 +39,10 @@ export function Bravery() {
     randomizeItems();
     actions.setSelectedRandomChampion(champion);
     actions.setSelectedRandomAbilityIndex(getRandomInt(3));
-    actions.setSelectedRandomAbility(champion.spells[state.selectedRandomAbilityIndex]);
   };
 
   const randomizeItems = () => {
-    // todo: make jungle percentage a constant and make a toggle for lanes
-    const isJungler = Math.random() > 0.8;
+    const isJungler = Math.random() < JUNGLE_ROLE_CHANCE;
     const randomItemsObj = {
       starter: isJungler
         ? randomObjectProperty(itemData.starter.jungle)
