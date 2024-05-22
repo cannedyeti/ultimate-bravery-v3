@@ -7,7 +7,6 @@ import {
   sortItemData,
   SUMMONERS_RIFT_MAP_ID,
   JUNGLE_ROLE_CHANCE,
-  getUniqueItems,
   randomUniqueItemsFromArray,
 } from "./components/helpers";
 import { getRandomInt, randomObjectProperty } from "src/common/helpers";
@@ -46,7 +45,6 @@ export function Bravery() {
       itemArray: itemData.items,
       noBoots,
     });
-    // console.log("test", getUniqueItems(items));
     const randomItemsObj = {
       starter: isJungler
         ? randomObjectProperty(itemData.starter.jungle)

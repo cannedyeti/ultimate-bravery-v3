@@ -57,6 +57,8 @@ const isItemEligible = (item) => {
   );
 };
 
+// todo: currently unused. Regex checks for unique passive names and
+// returns array of them. May only need first value.
 const getUniquePassiveNameFromItemDescription = (item) => {
   const regex = /(?<=<passive>).*?(?=<\/passive>)/g;
   const passive = [...new Set(item.description.match(regex))];
@@ -64,12 +66,17 @@ const getUniquePassiveNameFromItemDescription = (item) => {
   return passive;
 };
 
+// todo: Currently unsused - idea is to check each item to ensure we have no duplicate passives
+// Can't build maw and steraks for example. Should reroll repeat item if need be,
+// otherwise return arr
 export const getUniqueItems = (itemArr) => {
   const itemPassives = [];
   const uniqueItemsWithoutDuplicatePassives = itemArr.map((item) => {
     const passives = getUniquePassiveNameFromItemDescription(item);
     if (itemPassives.includes(passives[0])) {
       console.log("exists");
+      // todo: add logic here to reroll item if need be
+      // for now I just return it anyway, but this function is unused
       return item;
     }
     return item;
