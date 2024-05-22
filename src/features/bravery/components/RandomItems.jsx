@@ -6,20 +6,18 @@ import {
   SPELL_IMAGE_BASE_URL,
 } from "src/api/fetchRiotData";
 import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
-import { abilityArray } from "src/features/bravery/components/helpers";
 import { TooltipCard } from "src/features/bravery/components/TooltipCard";
+import { ABILITY_ARRAY } from "src/features/bravery/components/helpers";
 
 export function RandomItems() {
   const { state } = useContext(BraveryContext);
   const ability =
     state.selectedRandomChampion?.spells?.[state.selectedRandomAbilityIndex];
-  console.log(ability.name)
-  console.log(ability.description)
-  console.log({ability})
+
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
       <Box>
-        <Tooltip label={<TooltipCard header={ability.name} body={ability.description} />}>
+        <Tooltip label={<TooltipCard header={ability.name} body={ability.description} /> || ABILITY_ARRAY[state.selectedRandomAbilityIndex]}>
           <Avatar
             src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
             borderRadius={2}
@@ -32,21 +30,22 @@ export function RandomItems() {
               fontSize="12px"
               padding={2}
             >
-              <strong>{abilityArray[state.selectedRandomAbilityIndex]}</strong>
+              <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
             </AvatarBadge>
           </Avatar>
         </Tooltip>
       </Box>
-
       <Box>
-        <Tooltip label={
-          <TooltipCard header={state.selectedRandomItems.boots.name} body={`${state.selectedRandomItems.boots.gold.total} gold`} />}
+      {state.selectedRandomItems?.boots ? (
+        <Tooltip 
+          label={<TooltipCard header={state.selectedRandomItems.boots.name} body={`${state.selectedRandomItems.boots.gold.total} gold`} />}
         >
           <Avatar
             src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.boots.image.full}`}
             borderRadius={2}
           />
         </Tooltip>
+       ) : null}
         {state.selectedRandomItems.items.map((item) => (
           <Tooltip key={item.name} label={<TooltipCard header={item.name} body={`${item.gold.total} gold`} />}>
             <Avatar
