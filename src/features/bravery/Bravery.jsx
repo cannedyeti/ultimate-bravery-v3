@@ -7,12 +7,10 @@ import {
   sortItemData,
   SUMMONERS_RIFT_MAP_ID,
   JUNGLE_ROLE_CHANCE,
-} from "./components/helpers";
-import {
-  getRandomInt,
-  randomObjectProperty,
+  getUniqueItems,
   randomUniqueItemsFromArray,
-} from "src/common/helpers";
+} from "./components/helpers";
+import { getRandomInt, randomObjectProperty } from "src/common/helpers";
 
 export function Bravery() {
   const { state, actions } = useContext(BraveryContext);
@@ -36,21 +34,26 @@ export function Bravery() {
       return;
     }
     const champion = randomObjectProperty(state.selectedChampions);
-    randomizeItems();
+    randomizeItems(champion);
     actions.setSelectedRandomChampion(champion);
     actions.setSelectedRandomAbilityIndex(getRandomInt(3));
   };
 
-  const randomizeItems = () => {
+  const randomizeItems = (champion) => {
+    const noBoots = champion.name === "Cassiopeia";
     const isJungler = Math.random() < JUNGLE_ROLE_CHANCE;
+    const items = randomUniqueItemsFromArray({
+      itemArray: itemData.items,
+      noBoots,
+    });
+    // console.log("test", getUniqueItems(items));
     const randomItemsObj = {
       starter: isJungler
         ? randomObjectProperty(itemData.starter.jungle)
         : randomObjectProperty(itemData.starter.lane),
-      boots: randomObjectProperty(itemData.boots),
-      items: randomUniqueItemsFromArray(itemData.items, 5),
+      boots: noBoots ? null : randomObjectProperty(itemData.boots),
+      items: items,
     };
-
     console.log({ randomItemsObj });
     actions.setSelectedRandomItems(randomItemsObj);
   };
