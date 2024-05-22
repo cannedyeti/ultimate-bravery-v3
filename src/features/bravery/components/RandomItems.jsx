@@ -6,7 +6,7 @@ import {
   SPELL_IMAGE_BASE_URL,
 } from "src/api/fetchRiotData";
 import { BraveryContext } from "src/features/bravery/components/BraveryReducer";
-import { abilityArray } from "src/features/bravery/components/helpers";
+import { ABILITY_ARRAY } from "src/features/bravery/components/helpers";
 
 export function RandomItems() {
   const { state } = useContext(BraveryContext);
@@ -18,7 +18,7 @@ export function RandomItems() {
       <Box>
         <Tooltip
           label={
-            ability?.name || abilityArray[state.selectedRandomAbilityIndex]
+            ability?.name || ABILITY_ARRAY[state.selectedRandomAbilityIndex]
           }
         >
           <Avatar
@@ -33,19 +33,22 @@ export function RandomItems() {
               fontSize="12px"
               padding={2}
             >
-              <strong>{abilityArray[state.selectedRandomAbilityIndex]}</strong>
+              <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
             </AvatarBadge>
           </Avatar>
         </Tooltip>
       </Box>
 
       <Box>
-        <Tooltip label={state.selectedRandomItems.boots.name}>
-          <Avatar
-            src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.boots.image.full}`}
-            borderRadius={2}
-          />
-        </Tooltip>
+        {state.selectedRandomItems?.boots ? (
+          <Tooltip label={state.selectedRandomItems.boots.name}>
+            <Avatar
+              src={`${ITEM_IMAGE_BASE_URL}${state.selectedRandomItems.boots.image.full}`}
+              borderRadius={2}
+            />
+          </Tooltip>
+        ) : null}
+
         {state.selectedRandomItems.items.map((item) => (
           <Tooltip key={item.name} label={item.name}>
             <Avatar

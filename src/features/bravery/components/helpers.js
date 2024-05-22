@@ -1,5 +1,6 @@
 export const SUMMONERS_RIFT_MAP_ID = 11;
 export const JUNGLE_ROLE_CHANCE = 0.2;
+export const ABILITY_ARRAY = ["Q", "W", "E", "R"];
 
 export const sortItemData = (oldItemObject, mapId) => {
   const newItemObj = {
@@ -45,17 +46,46 @@ const getStarterItemByMap = (oldItemObject, mapId) => {
   return starterObject;
 };
 
-// this is a basic function for getting items. In the future we will need to check for edge
-// cases like unique item passives (eg: only one of steraks and maw can be purchased).
 const isItemEligible = (item) => {
+  if (item.name === "Mejai's Soulstealer") return item;
   return (
-    item.into?.length <= 1 &&
-    item.from &&
-    !item.from.includes("3867") &&
+    item.gold.total > 2000 &&
+    !item.from?.includes("3867") &&
+    item.gold.purchasable &&
     !item.requiredAlly &&
-    !(item.tags.includes("Consumable") || item.tags.includes("Boots")) &&
-    item.name !== "Leeching Leer"
+    item.name !== "Vigilant Wardstone"
   );
 };
 
-export const abilityArray = ["Q", "W", "E", "R"];
+// todo: currently unused. Regex checks for unique passive names and
+// returns array of them. May only need first value.
+const getUniquePassiveNameFromItemDescription = (item) => {
+  const regex = /(?<=<passive>).*?(?=<\/passive>)/g;
+  const passive = [...new Set(item.description.match(regex))];
+  console.log({ passive });
+  return passive;
+};
+
+// todo: Currently unsused - idea is to check each item to ensure we have no duplicate passives
+// Can't build maw and steraks for example. Should reroll repeat item if need be,
+// otherwise return arr
+export const getUniqueItems = (itemArr) => {
+  const itemPassives = [];
+  const uniqueItemsWithoutDuplicatePassives = itemArr.map((item) => {
+    const passives = getUniquePassiveNameFromItemDescription(item);
+    if (itemPassives.includes(passives[0])) {
+      console.log("exists");
+      // todo: add logic here to reroll item if need be
+      // for now I just return it anyway, but this function is unused
+      return item;
+    }
+    return item;
+  });
+  console.log("passives", uniqueItemsWithoutDuplicatePassives.flat());
+  return itemArr;
+};
+
+export const randomUniqueItemsFromArray = ({ itemArray, noBoots = false }) => {
+  const shuffled = itemArray.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, noBoots ? 6 : 5);
+};
