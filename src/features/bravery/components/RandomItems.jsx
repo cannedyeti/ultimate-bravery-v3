@@ -16,8 +16,8 @@ export function RandomItems() {
 
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
-      {ability ?
-        <Box >
+      <Box >
+        {ability ?
           <Tooltip label={<TooltipCard header={ability.name} body={ability.description} />}>
             <Avatar
               src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
@@ -35,9 +35,7 @@ export function RandomItems() {
               </AvatarBadge>
             </Avatar>
           </Tooltip>
-        </Box>
         :
-        <Box>
           <Tooltip label={<TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>} >
             <Avatar
               icon={<WarningTwoIcon />}
@@ -55,8 +53,8 @@ export function RandomItems() {
               </AvatarBadge>
             </Avatar>
           </Tooltip>
-        </Box>
         }
+      </Box>
       <Box>
       {state.selectedRandomItems?.boots ? (
         <Tooltip 
