@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Avatar, AvatarBadge, Box, Flex, Tooltip } from "@chakra-ui/react";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon, WarningTwoIcon } from "@chakra-ui/icons";
 import {
   ITEM_IMAGE_BASE_URL,
   SPELL_IMAGE_BASE_URL,
@@ -16,25 +16,47 @@ export function RandomItems() {
 
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
-      <Box>
-        <Tooltip label={<TooltipCard header={ability.name} body={ability.description} /> || ABILITY_ARRAY[state.selectedRandomAbilityIndex]}>
-          <Avatar
-            src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
-            borderRadius={2}
-          >
-            <AvatarBadge
-              boxSize="1.25em"
-              color="purple.600"
-              borderColor="purple.600"
-              backgroundColor="gray.300"
-              fontSize="12px"
-              padding={2}
+      {ability ?
+        <Box >
+          <Tooltip label={<TooltipCard header={ability.name} body={ability.description} />}>
+            <Avatar
+              src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
+              borderRadius={2}
             >
-              <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
-            </AvatarBadge>
-          </Avatar>
-        </Tooltip>
-      </Box>
+              <AvatarBadge
+                boxSize="1.25em"
+                color="purple.600"
+                borderColor="purple.600"
+                backgroundColor="gray.300"
+                fontSize="12px"
+                padding={2}
+              >
+                <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
+              </AvatarBadge>
+            </Avatar>
+          </Tooltip>
+        </Box>
+        :
+        <Box>
+          <Tooltip label={<TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>} >
+            <Avatar
+              icon={<WarningTwoIcon />}
+              borderRadius={2}
+            >
+              <AvatarBadge
+                boxSize="1.25em"
+                color="purple.600"
+                borderColor="purple.600"
+                backgroundColor="gray.300"
+                fontSize="12px"
+                padding={2}
+              >
+                <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
+              </AvatarBadge>
+            </Avatar>
+          </Tooltip>
+        </Box>
+        }
       <Box>
       {state.selectedRandomItems?.boots ? (
         <Tooltip 
