@@ -15,19 +15,19 @@ export function RandomItems() {
     state.selectedRandomChampion?.spells?.[state.selectedRandomAbilityIndex];
 
 
-  let tooltipLabel = <TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>
-  let avatarSrc = <WarningTwoIcon />;
+  let abilityTooltipLabel = <TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>
+  let abilityAvatarSrc = <WarningTwoIcon />;
   if (ability) {
-    tooltipLabel = <TooltipCard header={ability.name} body={ability.description} />;
-    avatarSrc = `${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`;
+    abilityTooltipLabel = <TooltipCard header={ability.name} body={ability.description} />;
+    abilityAvatarSrc = `${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`;
   }
 
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
-      <Box >
-        <Tooltip label={tooltipLabel} >
+      <Box>
+        <Tooltip label={abilityTooltipLabel} >
           <Avatar
-            src={avatarSrc}
+            src={abilityAvatarSrc}
             borderRadius={2}
           >
             <AvatarBadge
