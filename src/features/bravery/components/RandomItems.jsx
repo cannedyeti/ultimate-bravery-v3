@@ -14,49 +14,35 @@ export function RandomItems() {
   const ability =
     state.selectedRandomChampion?.spells?.[state.selectedRandomAbilityIndex];
 
+
+  let tooltipLabel = <TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>
+  let avatarSrc = <WarningTwoIcon />;
+  if (ability) {
+    tooltipLabel = <TooltipCard header={ability.name} body={ability.description} />;
+    avatarSrc = `${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`;
+  }
+
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
-      {ability ?
-        <Box >
-          <Tooltip label={<TooltipCard header={ability.name} body={ability.description} />}>
-            <Avatar
-              src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
-              borderRadius={2}
+      <Box >
+        <Tooltip label={tooltipLabel} >
+          <Avatar
+            src={avatarSrc}
+            borderRadius={2}
+          >
+            <AvatarBadge
+              boxSize="1.25em"
+              color="purple.600"
+              borderColor="purple.600"
+              backgroundColor="gray.300"
+              fontSize="12px"
+              padding={2}
             >
-              <AvatarBadge
-                boxSize="1.25em"
-                color="purple.600"
-                borderColor="purple.600"
-                backgroundColor="gray.300"
-                fontSize="12px"
-                padding={2}
-              >
-                <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
-              </AvatarBadge>
-            </Avatar>
-          </Tooltip>
-        </Box>
-        :
-        <Box>
-          <Tooltip label={<TooltipCard header={`Start: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body="Error Loading Ability"/>} >
-            <Avatar
-              icon={<WarningTwoIcon />}
-              borderRadius={2}
-            >
-              <AvatarBadge
-                boxSize="1.25em"
-                color="purple.600"
-                borderColor="purple.600"
-                backgroundColor="gray.300"
-                fontSize="12px"
-                padding={2}
-              >
-                <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
-              </AvatarBadge>
-            </Avatar>
-          </Tooltip>
-        </Box>
-        }
+              <strong>{ABILITY_ARRAY[state.selectedRandomAbilityIndex]}</strong>
+            </AvatarBadge>
+          </Avatar>
+        </Tooltip>
+      </Box>
       <Box>
       {state.selectedRandomItems?.boots ? (
         <Tooltip 
