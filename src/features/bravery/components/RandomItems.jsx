@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Avatar, AvatarBadge, Box, Flex, Tooltip } from "@chakra-ui/react";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon, WarningTwoIcon } from "@chakra-ui/icons";
 import {
   ITEM_IMAGE_BASE_URL,
   SPELL_IMAGE_BASE_URL,
@@ -14,12 +14,16 @@ export function RandomItems() {
   const ability =
     state.selectedRandomChampion?.spells?.[state.selectedRandomAbilityIndex];
 
+
+  
+
   return (
     <Flex marginTop={8} gap={2} justifyContent="space-between">
       <Box>
-        <Tooltip label={<TooltipCard header={ability.name} body={ability.description} /> || ABILITY_ARRAY[state.selectedRandomAbilityIndex]}>
+        <Tooltip label={ability ? <TooltipCard header={ability?.name} body={ability.description} /> : <TooltipCard header={`Max: ${ABILITY_ARRAY[state.selectedRandomAbilityIndex]}`} body={"Error finding ability"} />}>
           <Avatar
             src={`${SPELL_IMAGE_BASE_URL}${ability?.image?.full}`}
+            icon={<WarningTwoIcon />}
             borderRadius={2}
           >
             <AvatarBadge
