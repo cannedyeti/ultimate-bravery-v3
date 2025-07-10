@@ -7,7 +7,7 @@ export function Home() {
   return (
     <Box height="calc(100vh - 104px)" alignContent="center">
       <Heading textAlign="center" marginY={4}>
-        I fucked your mom!
+        Milkman
       </Heading>
       <Flex justifyContent="center" position="relative">
         <Image src="https://media.tenor.com/8tqHLy7JfhAAAAAj/milk-pepe.gif" />
