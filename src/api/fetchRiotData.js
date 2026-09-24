@@ -1,11 +1,11 @@
 export const CHAMPION_IMAGE_BASE_URL =
-  "https://ddragon.leagueoflegends.com/cdn/14.10.1/img/champion/";
+  "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/champion/";
 
 export const ITEM_IMAGE_BASE_URL =
-  "https://ddragon.leagueoflegends.com/cdn/14.10.1/img/item/";
+  "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/item/";
 
   export const SPELL_IMAGE_BASE_URL =
-  "https://ddragon.leagueoflegends.com/cdn/14.10.1/img/spell/";
+  "https://ddragon.leagueoflegends.com/cdn/16.19.1/img/spell/";
 
 export const getRiotData = async () => {
   const data = await fetch(
